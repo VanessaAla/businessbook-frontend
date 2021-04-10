@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBusinesses } from "../../store/businesses/actions";
 import { selectBusinesses } from "../../store/businesses/selectors";
+import Business from "../../components/Business";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
@@ -55,11 +56,8 @@ export default function SearchBusiness() {
         </Button>
       </Form>
       <div className="business-container">
-        {businesses.map((business) => (
-          <div>
-            {business.id} | {business.businessName} |{" "}
-            {business.businessCategory} | {business.businessCity}
-          </div>
+        {businesses.map((business, index) => (
+          <Business key={index} id={business.id} name={business.businessName} />
         ))}
       </div>
     </div>
