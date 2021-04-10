@@ -28,6 +28,7 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Switch>
         <Route exact path="/" component={SearchBusiness} />
+        <Route path="/search-business" component={SearchBusiness} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
       </Switch>
