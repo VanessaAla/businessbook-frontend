@@ -57,7 +57,7 @@ export default function SearchBusiness() {
       </Form>
       <div className="business-container">
         {businesses.map((business, index) => (
-          <Business key={index} id={business.id} business={business} />
+          <Business key={index} id={business.id} name={business.businessName} />
         ))}
       </div>
     </div>
