@@ -1,6 +1,6 @@
 import axios from "axios";
 import { apiUrl } from "../../config/constants";
-import { selectUser } from "../user/selectors";
+import { selectUser, selectToken } from "../user/selectors";
 
 export const USERS_FETCHED = "USERS_FETCHED";
 export const USERS_BLOCKED = "USERS_BLOCKED";
@@ -10,9 +10,9 @@ const usersFetched = (users) => ({
   payload: users,
 });
 
-export const usersBlocked = (users) => ({
+export const usersBlocked = (user) => ({
   type: USERS_BLOCKED,
-  payload: users.userId,
+  payload: user,
 });
 
 export const fetchUsers = () => {
@@ -30,16 +30,22 @@ export const fetchUsers = () => {
 
 export const blockUsers = (userId) => {
   return async (dispatch, getState) => {
-    const { token } = selectUser(getState());
+    const { token } = selectToken(getState());
 
     try {
-      const response = await axios.delete(`${apiUrl}/users/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await axios.put(
+        `${apiUrl}/users`,
+        {
+          userId,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("user deleted?", response);
-      dispatch(usersBlocked(response.data.userId));
+      dispatch(usersBlocked(response.data.user));
     } catch (e) {
       console.error(e);
     }

@@ -6,11 +6,20 @@ const initialState = [];
 export default (state = initialState, action) => {
   switch (action.type) {
     case USERS_FETCHED:
-      console.log("adding data to state: ", action);
+      //console.log("adding data to state: ", action);
       return [...action.payload];
 
     case USERS_BLOCKED:
-      return state.filter((users) => users.id !== parseInt(action.payload));
+      //return state.map((users) => users.id !== parseInt(action.payload));
+      return state.map((user) => {
+        if (user.id !== action.payload.id) {
+          return user;
+        }
+
+        user.isBlocked = true;
+
+        return user;
+      });
 
     default:
       return state;
