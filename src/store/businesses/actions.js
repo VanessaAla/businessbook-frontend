@@ -31,7 +31,7 @@ export const fetchBusinesses = (category, city) => {
   };
 };
 
-export const registerBusiness = (
+export const doRegisterBusiness = (
   businessName,
   businessCategory,
   businessAddress,
