@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import SearchBusiness from "./pages/SearchBusiness";
 import RegisterBusiness from "./pages/RegisterBusiness";
+import ManageUsers from "./pages/ManageUsers";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -31,6 +32,7 @@ function App() {
         <Route exact path="/" component={SearchBusiness} />
         <Route path="/search-business" component={SearchBusiness} />
         <Route path="/businesses/register" component={RegisterBusiness} />
+        <Route path="/manage-users" component={ManageUsers} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
       </Switch>
