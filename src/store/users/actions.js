@@ -13,12 +13,12 @@ export const fetchUsers = () => {
   return async (dispatch, getState) => {
     const { token } = selectUser(getState());
 
-    const response = await axios.get(`${apiUrl}/users/`, {
+    const response = await axios.get(`${apiUrl}/users`, {
       //add user router in db and check your path here
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    dispatch(usersFetched(response));
+    dispatch(usersFetched(response.data.allUsers.rows));
   };
 };

@@ -6,7 +6,7 @@ const initialState = [];
 export default (state = initialState, action) => {
   switch (action.type) {
     case USERS_FETCHED:
-      //add a c.log here to check if data is added to state
+      console.log("adding data to state: ", action);
       return [...action.payload];
     default:
       return state;
