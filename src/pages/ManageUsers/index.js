@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../../store/users/actions";
+import { fetchUsers, blockUsers } from "../../store/users/actions";
 import { selectUsers } from "../../store/users/selectors";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
@@ -16,6 +16,7 @@ export default function ManageUsers() {
 
   const doBlock = (id) => {
     console.log("block user : ", id);
+    dispatch(blockUsers(id));
   };
 
   const doUnBlock = (id) => {
