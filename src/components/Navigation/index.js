@@ -21,8 +21,7 @@ export default function Navigation() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
-          <NavBarItem path="/" linkText="Home" />
-          <NavBarItem path="/search" linkText="SearchBusiness" />
+          <NavBarItem path="/search-business" linkText="SearchBusiness" />
           {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>

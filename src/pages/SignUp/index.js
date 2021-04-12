@@ -100,12 +100,18 @@ export default function SignUp() {
         <Form.Group controlId="formBasicCity">
           <Form.Label>City</Form.Label>
           <Form.Control
-            value={city}
-            onChange={(event) => set_City(event.target.value)}
+            as="select"
+            size="sm"
             type="city"
-            placeholder="Enter City"
-            required
-          />
+            custom
+            onChange={(e) => set_City(e.target.value)}
+          >
+            <option>Utrecht</option>
+            <option>Amsterdam</option>
+            <option>Rotterdam</option>
+            <option>Eindhoven</option>
+            <option>Arnhem</option>
+          </Form.Control>
         </Form.Group>
         <Form.Group controlId="formBasicPostalCode">
           <Form.Label>Postal Code</Form.Label>
