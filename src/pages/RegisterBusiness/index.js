@@ -14,6 +14,7 @@ export default function RegisterBusiness() {
   const [businessAddress, set_businessAddress] = useState("");
   const [businessCity, set_businessCity] = useState("");
   const [businessPostalCode, set_businessPostalCode] = useState("");
+  const [imgURL, set_imgURL] = useState("");
   const dispatch = useDispatch();
 
   function submitForm(event) {
@@ -25,7 +26,8 @@ export default function RegisterBusiness() {
         businessCategory,
         businessAddress,
         businessCity,
-        businessPostalCode
+        businessPostalCode,
+        imgURL
       )
     );
   }
@@ -83,6 +85,16 @@ export default function RegisterBusiness() {
             onChange={(event) => set_businessPostalCode(event.target.value)}
             type="businessPostalCode"
             placeholder="Enter Business Postal Code"
+            required
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicImgURL">
+          <Form.Label>Img Url</Form.Label>
+          <Form.Control
+            value={imgURL}
+            onChange={(event) => set_imgURL(event.target.value)}
+            type="imgURL"
+            placeholder="Enter Img URL"
             required
           />
         </Form.Group>

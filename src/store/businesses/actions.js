@@ -36,18 +36,20 @@ export const doRegisterBusiness = (
   businessCategory,
   businessAddress,
   businessCity,
-  businessPostalCode
+  businessPostalCode,
+  imgURL
 ) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      const response = await axios.post(`${apiUrl}/register`, {
+      const response = await axios.post(`${apiUrl}/businesses/register`, {
         //check the path here with the backend
         businessName,
         businessCategory,
         businessAddress,
         businessCity,
         businessPostalCode,
+        imgURL,
       });
 
       dispatch(registerBusinessSuccess(response.data));
