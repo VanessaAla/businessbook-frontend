@@ -65,7 +65,6 @@ export default function RegisterBusiness() {
             onChange={(event) => set_businessAddress(event.target.value)}
             type="businessAddress"
             placeholder="Enter Business Address"
-            required
           />
         </Form.Group>
         <Form.Group controlId="formBasicBusinessCity">
@@ -95,7 +94,6 @@ export default function RegisterBusiness() {
             onChange={(event) => set_imgURL(event.target.value)}
             type="imgURL"
             placeholder="Enter Img URL"
-            required
           />
         </Form.Group>
 
