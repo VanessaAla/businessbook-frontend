@@ -1,4 +1,5 @@
 import { apiUrl } from "../../config/constants";
+import { selectUser } from "../user/selectors";
 import axios from "axios";
 import {
   appLoading,
@@ -17,7 +18,7 @@ export const fetchBusinessesSuccess = (businesses) => ({
 
 export const registerBusinessSuccess = (business) => ({
   type: REGISTER_BUSINESS_SUCCESS,
-  payload: business, //maybe id here
+  payload: business,
 });
 
 export const fetchBusinesses = (category, city) => {
@@ -40,16 +41,25 @@ export const doRegisterBusiness = (
   imgURL
 ) => {
   return async (dispatch, getState) => {
+    const { token } = selectUser(getState());
     dispatch(appLoading());
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    const data = {
+      businessName,
+      businessCategory,
+      businessAddress,
+      businessCity,
+      businessPostalCode,
+      imgURL,
+    };
+
     try {
-      const response = await axios.post(`${apiUrl}/businesses/register`, {
-        //check the path here with the backend
-        businessName,
-        businessCategory,
-        businessAddress,
-        businessCity,
-        businessPostalCode,
-        imgURL,
+      const response = await axios.post(`${apiUrl}/businesses/register`, data, {
+        headers: headers,
       });
 
       dispatch(registerBusinessSuccess(response.data));
