@@ -3,15 +3,20 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectToken } from "../../store/user/selectors";
+import { selectToken, selectUser } from "../../store/user/selectors";
 import NavBarItem from "./NavBarItem";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 
 export default function Navigation() {
   const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
 
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
+
+  const userAdminLoggedIn = () => {
+    return user.isAdmin === true;
+  };
 
   return (
     <Navbar bg="light" expand="lg">
@@ -23,6 +28,9 @@ export default function Navigation() {
         <Nav style={{ width: "100%" }} fill>
           <NavBarItem path="/search-business" linkText="SearchBusiness" />
           <NavBarItem path="/businesses/register" linkText="RegisterBusiness" />
+          {userAdminLoggedIn() ? (
+            <NavBarItem path="/manage-users" linkText="Manage Users" />
+          ) : null}
           {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>
