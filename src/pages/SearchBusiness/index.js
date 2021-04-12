@@ -9,8 +9,8 @@ import Button from "react-bootstrap/Button";
 export default function SearchBusiness() {
   const dispatch = useDispatch();
   const businesses = useSelector(selectBusinesses);
-  const [category, set_Category] = useState("spa");
-  const [city, set_City] = useState("Utrecht");
+  const [category, set_Category] = useState("");
+  const [city, set_City] = useState("");
 
   const fetchBusinessForSelectedCriteria = (category, city) => {
     dispatch(fetchBusinesses(category, city));
@@ -27,6 +27,7 @@ export default function SearchBusiness() {
             custom
             onChange={(e) => set_Category(e.target.value)}
           >
+            <option>Please Select a Category</option>
             <option>spa</option>
             <option>gardening</option>
             <option>cleaning</option>
@@ -42,6 +43,7 @@ export default function SearchBusiness() {
             custom
             onChange={(e) => set_City(e.target.value)}
           >
+            <option>Please Select a City</option>
             <option>Utrecht</option>
             <option>Amsterdam</option>
             <option>Rotterdam</option>

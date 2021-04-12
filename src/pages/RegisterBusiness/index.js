@@ -7,6 +7,7 @@ import { doRegisterBusiness } from "../../store/businesses/actions";
 import { useDispatch } from "react-redux";
 //import { Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
+import { setMessage } from "../../store/appState/actions";
 
 export default function RegisterBusiness() {
   const [businessName, set_businessName] = useState("");
@@ -19,6 +20,15 @@ export default function RegisterBusiness() {
 
   function submitForm(event) {
     event.preventDefault();
+
+    if (
+      businessCity === "" ||
+      businessCity === undefined ||
+      businessCity === "Please Select a City"
+    ) {
+      dispatch(setMessage("danger", true, "Please select a city"));
+      return;
+    }
 
     dispatch(
       doRegisterBusiness(
@@ -51,12 +61,18 @@ export default function RegisterBusiness() {
         <Form.Group controlId="formBasicBusinessCategory">
           <Form.Label>Business Category</Form.Label>
           <Form.Control
-            value={businessCategory}
-            onChange={(event) => set_businessCategory(event.target.value)}
-            type="businessCategory"
-            placeholder="Select Business Category"
-            required
-          />
+            as="select"
+            size="sm"
+            custom
+            onChange={(e) => set_businessCategory(e.target.value)}
+          >
+            <option>Please Select a Category</option>
+            <option>spa</option>
+            <option>gardening</option>
+            <option>cleaning</option>
+            <option>catering</option>
+            <option>pet sitters</option>
+          </Form.Control>
         </Form.Group>
         <Form.Group controlId="formBasicBusinessAddress">
           <Form.Label>Business Address</Form.Label>
@@ -70,12 +86,18 @@ export default function RegisterBusiness() {
         <Form.Group controlId="formBasicBusinessCity">
           <Form.Label>Business City</Form.Label>
           <Form.Control
-            value={businessCity}
-            onChange={(event) => set_businessCity(event.target.value)}
-            type="businessCity"
-            placeholder="Enter Business City"
-            required
-          />
+            as="select"
+            size="sm"
+            custom
+            onChange={(e) => set_businessCity(e.target.value)}
+          >
+            <option>Please Select a City</option>
+            <option>Utrecht</option>
+            <option>Amsterdam</option>
+            <option>Rotterdam</option>
+            <option>Eindhoven</option>
+            <option>Arnhem</option>
+          </Form.Control>
         </Form.Group>
         <Form.Group controlId="formBasicBusinessPostalCode">
           <Form.Label>Business Postal Code</Form.Label>
