@@ -1,6 +1,12 @@
 import axios from "axios";
 import { apiUrl } from "../../config/constants";
 import { selectUser, selectToken } from "../user/selectors";
+import {
+  appLoading,
+  appDoneLoading,
+  setMessage,
+  showMessageWithTimeout,
+} from "../appState/actions";
 
 export const USERS_FETCHED = "USERS_FETCHED";
 export const USERS_BLOCKED = "USERS_BLOCKED";
@@ -37,6 +43,7 @@ export const fetchUsers = () => {
 export const blockUsers = (userId) => {
   return async (dispatch, getState) => {
     const { token } = selectToken(getState());
+    dispatch(appLoading());
 
     try {
       const response = await axios.put(
@@ -52,14 +59,24 @@ export const blockUsers = (userId) => {
       );
       console.log("user blocked?", response);
       dispatch(usersBlocked(response.data.user));
-    } catch (e) {
-      console.error(e);
+      dispatch(showMessageWithTimeout("success", true, "user is blocked"));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
     }
   };
 };
 export const unBlockUsers = (userId) => {
   return async (dispatch, getState) => {
     const { token } = selectToken(getState());
+    dispatch(appLoading());
 
     try {
       const response = await axios.put(
@@ -75,8 +92,17 @@ export const unBlockUsers = (userId) => {
       );
       console.log("user unblocked?", response);
       dispatch(usersUnBlocked(response.data.user));
-    } catch (e) {
-      console.error(e);
+      dispatch(showMessageWithTimeout("success", true, "user is unblocked"));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
     }
   };
 };
