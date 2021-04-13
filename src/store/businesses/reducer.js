@@ -12,7 +12,8 @@ export default (state = initialState, action) => {
     case REGISTER_BUSINESS_SUCCESS:
       return [action.payload];
 
-    case BUSINESS_DELETE: //check your logic with filter here after implementing db also
+    case BUSINESS_DELETE:
+      console.log("action.payload ", action.payload);
       return state.filter(
         (business) => business.id !== parseInt(action.payload)
       );
