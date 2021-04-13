@@ -29,11 +29,11 @@ const tokenStillValid = (userWithoutToken) => {
 
 export const logOut = () => ({ type: LOG_OUT });
 
-export const userUpdated = (userId) => {
+export const userUpdated = (user) => {
   //test here
   return {
     type: USER_UPDATED,
-    payload: userId,
+    payload: user,
   };
 };
 
@@ -141,7 +141,7 @@ export const updateUser = (
     dispatch(appLoading());
     try {
       const response = await axios.put(
-        `${apiUrl}/update-user`,
+        `${apiUrl}/users/update`,
         {
           firstName,
           lastName,
@@ -154,6 +154,7 @@ export const updateUser = (
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+      console.log("response: ", response);
       dispatch(userUpdated(response.data));
       dispatch(tokenStillValid(response.data));
       dispatch(showMessageWithTimeout("success", true, "details updated"));
