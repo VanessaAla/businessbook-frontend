@@ -10,6 +10,12 @@ import {
 
 export const FETCH_BUSINESSES_SUCCESS = "FETCH_BUSINESSES_SUCCESS";
 export const REGISTER_BUSINESS_SUCCESS = "REGISTER_BUSINESS_SUCCESS";
+export const BUSINESS_DELETE = "BUSINESS_DELETE";
+
+export const businessDelete = (businessId) => ({
+  type: BUSINESS_DELETE,
+  payload: businessId,
+});
 
 export const fetchBusinessesSuccess = (businesses) => ({
   type: FETCH_BUSINESSES_SUCCESS,
@@ -74,6 +80,29 @@ export const doRegisterBusiness = (
         dispatch(setMessage("danger", true, error.message));
       }
       dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const deleteBusiness = (businessId) => {
+  return async (dispatch, getState) => {
+    const { token } = selectUser(getState());
+
+    console.log("id : ", businessId);
+
+    try {
+      const response = await axios.delete(
+        `${apiUrl}/businesses/${businessId}`, //check your path here in backend
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("business deleted?", response);
+      dispatch(businessDelete(response.data.businessId));
+    } catch (e) {
+      console.error(e);
     }
   };
 };
