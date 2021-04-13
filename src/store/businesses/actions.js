@@ -100,8 +100,17 @@ export const deleteBusiness = (businessId) => {
       );
       console.log("business deleted?", response);
       dispatch(businessDelete(response.data.businessId));
-    } catch (e) {
-      console.error(e);
+      dispatch(showMessageWithTimeout("success", true, "business deleted"));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
     }
   };
 };
