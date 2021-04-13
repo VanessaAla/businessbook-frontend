@@ -30,7 +30,6 @@ const tokenStillValid = (userWithoutToken) => {
 export const logOut = () => ({ type: LOG_OUT });
 
 export const userUpdated = (user) => {
-  //test here
   return {
     type: USER_UPDATED,
     payload: user,
@@ -154,7 +153,7 @@ export const updateUser = (
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log("response: ", response);
+
       dispatch(userUpdated(response.data));
       dispatch(tokenStillValid(response.data));
       dispatch(showMessageWithTimeout("success", true, "details updated"));
@@ -164,7 +163,6 @@ export const updateUser = (
         console.log(error.response.data.message);
         dispatch(setMessage("danger", true, error.response.data.message));
       } else {
-        console.log(error.message);
         dispatch(setMessage("danger", true, error.message));
       }
       dispatch(appDoneLoading());
