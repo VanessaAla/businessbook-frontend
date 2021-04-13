@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { selectUser } from "../../store/user/selectors";
+import { updateUser } from "../../store/user/actions";
 import { Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,11 +14,20 @@ export default function UpdateDetails() {
   const [address, set_Address] = useState("");
   const [city, set_City] = useState("");
   const [postalCode, set_PostalCode] = useState("");
+  const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
 
   function submitForm(event) {
     event.preventDefault();
+
+    dispatch(updateUser(firstName, lastName, email, address, city, postalCode));
+    set_firstName("");
+    set_lastName("");
+    set_Email("");
+    set_Address("");
+    set_City("");
+    set_PostalCode("");
   }
 
   return (

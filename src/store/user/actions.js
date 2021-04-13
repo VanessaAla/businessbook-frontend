@@ -126,27 +126,46 @@ export const getUserWithStoredToken = () => {
   };
 };
 
-export const updateUser = () => {
+export const updateUser = (
+  firstName,
+  lastName,
+  email,
+  address,
+  city,
+  postalCode
+) => {
   return async (dispatch, getState) => {
     const token = selectToken(getState());
     if (token === null) return;
 
     dispatch(appLoading());
     try {
-      const response = await axios.put(`${apiUrl}/me`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
+      const response = await axios.put(
+        `${apiUrl}/update-user`,
+        {
+          firstName,
+          lastName,
+          email,
+          address,
+          city,
+          postalCode,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      dispatch(userUpdated(response.data));
       dispatch(tokenStillValid(response.data));
+      dispatch(showMessageWithTimeout("success", true, "details updated"));
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
-        console.log(error.response.message);
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
       } else {
-        console.log(error);
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
       }
-
-      dispatch(logOut());
       dispatch(appDoneLoading());
     }
   };
