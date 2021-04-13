@@ -27,11 +27,9 @@ export const registerBusinessSuccess = (business) => ({
   payload: business,
 });
 
-export const fetchBusinesses = (category, city) => {
+export const fetchBusinesses = () => {
   return async (dispatch, getState) => {
-    const response = await axios.get(
-      `${apiUrl}/businesses?category=${category}&city=${city}`
-    );
+    const response = await axios.get(`${apiUrl}/businesses`);
 
     console.log("response: ", response.data);
     dispatch(fetchBusinessesSuccess(response.data.businesses));
@@ -92,7 +90,10 @@ export const deleteBusiness = (businessId) => {
 
     try {
       const response = await axios.delete(
-        `${apiUrl}/businesses/${businessId}`, //check your path here in backend
+        `${apiUrl}/businesses/`, //check your path here in backend
+        {
+          businessId,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
