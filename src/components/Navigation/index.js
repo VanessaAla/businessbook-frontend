@@ -31,6 +31,9 @@ export default function Navigation() {
           {userAdminLoggedIn() ? (
             <NavBarItem path="/manage-users" linkText="Manage Users" />
           ) : null}
+          {userAdminLoggedIn() ? (
+            <NavBarItem path="/manage-business" linkText="Manage Business" />
+          ) : null}
           {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>
