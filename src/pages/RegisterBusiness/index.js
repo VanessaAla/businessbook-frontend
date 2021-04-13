@@ -3,9 +3,8 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { doRegisterBusiness } from "../../store/businesses/actions";
-//import { selectBusinesses } from "../../store/businesses/selectors";
 import { useDispatch } from "react-redux";
-//import { Link } from "react-router-dom";
+
 import { Col } from "react-bootstrap";
 import { setMessage } from "../../store/appState/actions";
 
@@ -41,7 +40,6 @@ export default function RegisterBusiness() {
       )
     );
   }
-  //my dispatch action to register the business here?
 
   return (
     <Container>

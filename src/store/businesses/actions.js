@@ -10,6 +10,12 @@ import {
 
 export const FETCH_BUSINESSES_SUCCESS = "FETCH_BUSINESSES_SUCCESS";
 export const REGISTER_BUSINESS_SUCCESS = "REGISTER_BUSINESS_SUCCESS";
+export const BUSINESS_DELETE = "BUSINESS_DELETE";
+
+export const businessDelete = (businessId) => ({
+  type: BUSINESS_DELETE,
+  payload: businessId,
+});
 
 export const fetchBusinessesSuccess = (businesses) => ({
   type: FETCH_BUSINESSES_SUCCESS,
@@ -21,11 +27,9 @@ export const registerBusinessSuccess = (business) => ({
   payload: business,
 });
 
-export const fetchBusinesses = (category, city) => {
+export const fetchBusinesses = () => {
   return async (dispatch, getState) => {
-    const response = await axios.get(
-      `${apiUrl}/businesses?category=${category}&city=${city}`
-    );
+    const response = await axios.get(`${apiUrl}/businesses`);
 
     console.log("response: ", response.data);
     dispatch(fetchBusinessesSuccess(response.data.businesses));
@@ -64,6 +68,39 @@ export const doRegisterBusiness = (
 
       dispatch(registerBusinessSuccess(response.data));
       dispatch(showMessageWithTimeout("success", true, "business registered"));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const deleteBusiness = (businessId) => {
+  return async (dispatch, getState) => {
+    const { token } = selectUser(getState());
+
+    console.log("id : ", businessId);
+
+    try {
+      const response = await axios.delete(
+        `${apiUrl}/businesses/remove/${businessId}`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("business deleted?", response);
+      dispatch(businessDelete(response.data.businessId));
+      dispatch(showMessageWithTimeout("success", true, "business deleted"));
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {

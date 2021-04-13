@@ -6,7 +6,6 @@ const initialState = [];
 export default (state = initialState, action) => {
   switch (action.type) {
     case USERS_FETCHED:
-      //console.log("adding data to state: ", action);
       return [...action.payload];
 
     case USERS_BLOCKED:
