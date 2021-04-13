@@ -11,6 +11,7 @@ import {
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
+export const USER_UPDATED = "USER_UPDATED";
 
 const loginSuccess = (userWithToken) => {
   return {
@@ -27,6 +28,13 @@ const tokenStillValid = (userWithoutToken) => {
 };
 
 export const logOut = () => ({ type: LOG_OUT });
+
+export const userUpdated = (user) => {
+  return {
+    type: USER_UPDATED,
+    payload: user,
+  };
+};
 
 export const signUp = (
   firstName,
@@ -112,6 +120,51 @@ export const getUserWithStoredToken = () => {
       }
 
       dispatch(logOut());
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const updateUser = (
+  firstName,
+  lastName,
+  email,
+  address,
+  city,
+  postalCode
+) => {
+  return async (dispatch, getState) => {
+    const token = selectToken(getState());
+    if (token === null) return;
+
+    dispatch(appLoading());
+    try {
+      const response = await axios.put(
+        `${apiUrl}/users/update`,
+        {
+          firstName,
+          lastName,
+          email,
+          address,
+          city,
+          postalCode,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      dispatch(userUpdated(response.data));
+      dispatch(tokenStillValid(response.data));
+      dispatch(showMessageWithTimeout("success", true, "details updated"));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        dispatch(setMessage("danger", true, error.message));
+      }
       dispatch(appDoneLoading());
     }
   };

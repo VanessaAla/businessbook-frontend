@@ -47,7 +47,7 @@ export const blockUsers = (userId) => {
 
     try {
       const response = await axios.put(
-        `${apiUrl}/users`,
+        `${apiUrl}/users/block`,
         {
           userId,
         },

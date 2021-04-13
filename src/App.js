@@ -11,6 +11,7 @@ import SearchBusiness from "./pages/SearchBusiness";
 import RegisterBusiness from "./pages/RegisterBusiness";
 import ManageUsers from "./pages/ManageUsers";
 import ManageBusiness from "./pages/ManageBusiness";
+import UpdateDetails from "./pages/UpdateDetails";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -35,6 +36,7 @@ function App() {
         <Route path="/businesses/register" component={RegisterBusiness} />
         <Route path="/manage-users" component={ManageUsers} />
         <Route path="/manage-business" component={ManageBusiness} />
+        <Route path="/update-details" component={UpdateDetails} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
       </Switch>

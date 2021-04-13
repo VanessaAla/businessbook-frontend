@@ -28,6 +28,7 @@ export default function Navigation() {
         <Nav style={{ width: "100%" }} fill>
           <NavBarItem path="/search-business" linkText="SearchBusiness" />
           <NavBarItem path="/businesses/register" linkText="RegisterBusiness" />
+          <NavBarItem path="/update-details" linkText="UpdateDetails" />
           {userAdminLoggedIn() ? (
             <NavBarItem path="/manage-users" linkText="Manage Users" />
           ) : null}
