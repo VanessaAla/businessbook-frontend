@@ -1,6 +1,11 @@
 /* eslint-disable default-case */
 /* eslint-disable import/no-anonymous-default-export */
-import { LOGIN_SUCCESS, LOG_OUT, TOKEN_STILL_VALID } from "./actions";
+import {
+  LOGIN_SUCCESS,
+  LOG_OUT,
+  TOKEN_STILL_VALID,
+  USER_UPDATED,
+} from "./actions";
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -19,6 +24,10 @@ export default (state = initialState, action) => {
 
     case TOKEN_STILL_VALID:
       return { ...state, ...action.payload };
+
+    case USER_UPDATED:
+      return { ...state, ...action.payload };
+
     default:
       return state;
   }

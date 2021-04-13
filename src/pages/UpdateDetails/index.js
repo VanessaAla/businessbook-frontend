@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { selectUser } from "../../store/user/selectors";
 import { Col } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function UpdateDetails() {
   const [firstName, set_firstName] = useState("");

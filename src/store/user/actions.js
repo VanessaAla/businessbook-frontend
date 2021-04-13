@@ -11,6 +11,7 @@ import {
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
+export const USER_UPDATED = "USER_UPDATED";
 
 const loginSuccess = (userWithToken) => {
   return {
@@ -27,6 +28,14 @@ const tokenStillValid = (userWithoutToken) => {
 };
 
 export const logOut = () => ({ type: LOG_OUT });
+
+export const userUpdated = (userId) => {
+  //test here
+  return {
+    type: USER_UPDATED,
+    payload: userId,
+  };
+};
 
 export const signUp = (
   firstName,
@@ -99,6 +108,32 @@ export const getUserWithStoredToken = () => {
     dispatch(appLoading());
     try {
       const response = await axios.get(`${apiUrl}/me`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      dispatch(tokenStillValid(response.data));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.message);
+      } else {
+        console.log(error);
+      }
+
+      dispatch(logOut());
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const updateUser = () => {
+  return async (dispatch, getState) => {
+    const token = selectToken(getState());
+    if (token === null) return;
+
+    dispatch(appLoading());
+    try {
+      const response = await axios.put(`${apiUrl}/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
