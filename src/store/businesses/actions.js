@@ -90,10 +90,8 @@ export const deleteBusiness = (businessId) => {
 
     try {
       const response = await axios.delete(
-        `${apiUrl}/businesses/`, //check your path here in backend
-        {
-          businessId,
-        },
+        `${apiUrl}/businesses/remove/${businessId}`, //check your path here in backend
+
         {
           headers: {
             Authorization: `Bearer ${token}`,

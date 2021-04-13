@@ -43,7 +43,7 @@ export default function ManageBusiness() {
 
               <td>
                 <Button onClick={() => doDeleteBusiness(business.id)}>
-                  Cancel
+                  Delete
                 </Button>
               </td>
             </tr>

@@ -13,12 +13,9 @@ export default (state = initialState, action) => {
       return [action.payload];
 
     case BUSINESS_DELETE: //check your logic with filter here after implementing db also
-      return state.map((business) => {
-        if (business.id !== action.payload.id) {
-          return business;
-        }
-        return business;
-      });
+      return state.filter(
+        (business) => business.id !== parseInt(action.payload)
+      );
     default:
       return state;
   }
