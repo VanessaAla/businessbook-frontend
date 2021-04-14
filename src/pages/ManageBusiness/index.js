@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchBusinesses,
+  fetchAllBusinesses,
   deleteBusiness,
 } from "../../store/businesses/actions";
 import { selectBusinesses } from "../../store/businesses/selectors";
@@ -14,11 +14,10 @@ export default function ManageBusiness() {
   const businesses = useSelector(selectBusinesses);
 
   useEffect(() => {
-    dispatch(fetchBusinesses());
+    dispatch(fetchAllBusinesses());
   }, [dispatch]);
 
   const doDeleteBusiness = (id) => {
-    console.log("clicked id : ", id);
     dispatch(deleteBusiness(id));
   };
 
@@ -40,7 +39,6 @@ export default function ManageBusiness() {
             <tr key={index}>
               <td>{business.businessName}</td>
               <td>{business.businessCategory}</td>
-
               <td>
                 <Button onClick={() => doDeleteBusiness(business.id)}>
                   Delete

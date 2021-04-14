@@ -1,10 +1,11 @@
 import React from "react";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { selectUser } from "../../store/user/selectors";
 import { makeAppointment } from "../../store/appointments/actions";
-import Jumbotron from "react-bootstrap/Jumbotron";
-import Button from "react-bootstrap/Button";
+
 import { Link } from "react-router-dom";
 
 export default function Business(props) {

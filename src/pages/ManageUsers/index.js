@@ -19,12 +19,10 @@ export default function ManageUsers() {
   }, [dispatch]);
 
   const doBlock = (id) => {
-    console.log("block user : ", id);
     dispatch(blockUsers(id));
   };
 
   const doUnBlock = (id) => {
-    console.log("unblock user : ", id);
     dispatch(unBlockUsers(id));
   };
 

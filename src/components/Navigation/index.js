@@ -14,22 +14,36 @@ export default function Navigation() {
 
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
+  const userLoggedIn = () => {
+    return user.token !== null;
+  };
+
   const userAdminLoggedIn = () => {
     return user.isAdmin === true;
   };
 
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand as={NavLink} to="/">
-        BusinessBook
-      </Navbar.Brand>
+      {!userAdminLoggedIn() ? (
+        <Navbar.Brand as={NavLink} to="/">
+          BusinessBook
+        </Navbar.Brand>
+      ) : null}
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
-          <NavBarItem path="/search-business" linkText="SearchBusiness" />
-          <NavBarItem path="/businesses/register" linkText="RegisterBusiness" />
-          <NavBarItem path="/update-details" linkText="UpdateDetails" />
-          <NavBarItem path="/view-appointments" linkText="ViewAppointments" />
+          {userLoggedIn() && !userAdminLoggedIn() ? (
+            <NavBarItem
+              path="/businesses/register"
+              linkText="RegisterBusiness"
+            />
+          ) : null}
+          {userLoggedIn() ? (
+            <NavBarItem path="/update-details" linkText="UpdateDetails" />
+          ) : null}
+          {userLoggedIn() && !userAdminLoggedIn() ? (
+            <NavBarItem path="/view-appointments" linkText="ViewAppointments" />
+          ) : null}
           {userAdminLoggedIn() ? (
             <NavBarItem path="/manage-users" linkText="Manage Users" />
           ) : null}

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchBusinesses } from "../../store/businesses/actions";
-import { selectBusinesses } from "../../store/businesses/selectors";
 import Business from "../../components/Business";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBusinesses } from "../../store/businesses/actions";
+import { selectBusinesses } from "../../store/businesses/selectors";
 
 export default function SearchBusiness() {
   const dispatch = useDispatch();

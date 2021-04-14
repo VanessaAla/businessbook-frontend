@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAppointments } from "../../store/appointments/actions";
 import { selectAppointments } from "../../store/appointments/selectors";
-import Jumbotron from "react-bootstrap/Jumbotron";
-import Table from "react-bootstrap/Table";
 
 export default function ViewAppointments() {
   const dispatch = useDispatch();
   const appointments = useSelector(selectAppointments);
-  console.log("WHAT ARE THESE? ", appointments);
 
   useEffect(() => {
     dispatch(fetchAppointments(new Date().toISOString().slice(0, 10)));
