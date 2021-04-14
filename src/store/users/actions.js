@@ -57,7 +57,6 @@ export const blockUsers = (userId) => {
           },
         }
       );
-      console.log("user blocked?", response);
       dispatch(usersBlocked(response.data.user));
       dispatch(showMessageWithTimeout("success", true, "user is blocked"));
       dispatch(appDoneLoading());
@@ -90,7 +89,6 @@ export const unBlockUsers = (userId) => {
           },
         }
       );
-      console.log("user unblocked?", response);
       dispatch(usersUnBlocked(response.data.user));
       dispatch(showMessageWithTimeout("success", true, "user is unblocked"));
       dispatch(appDoneLoading());
