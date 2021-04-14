@@ -31,7 +31,6 @@ export const fetchBusinesses = () => {
   return async (dispatch, getState) => {
     const response = await axios.get(`${apiUrl}/businesses`);
 
-    console.log("response: ", response.data);
     dispatch(fetchBusinessesSuccess(response.data.businesses));
   };
 };

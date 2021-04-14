@@ -17,7 +17,6 @@ export default function Business(props) {
 
   const doMakeAppointment = (event) => {
     event.preventDefault();
-    console.log("props ", props);
     dispatch(makeAppointment(new Date(), props.id));
   };
 
