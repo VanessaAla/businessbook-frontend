@@ -37,6 +37,14 @@ export const fetchBusinesses = (category, city) => {
   };
 };
 
+export const fetchAllBusinesses = () => {
+  return async (dispatch, getState) => {
+    const response = await axios.get(`${apiUrl}/businesses/all`);
+
+    dispatch(fetchBusinessesSuccess(response.data.businesses));
+  };
+};
+
 export const doRegisterBusiness = (
   businessName,
   businessCategory,
