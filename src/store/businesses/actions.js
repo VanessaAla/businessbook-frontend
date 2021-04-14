@@ -27,9 +27,11 @@ export const registerBusinessSuccess = (business) => ({
   payload: business,
 });
 
-export const fetchBusinesses = () => {
+export const fetchBusinesses = (category, city) => {
   return async (dispatch, getState) => {
-    const response = await axios.get(`${apiUrl}/businesses`);
+    const response = await axios.get(
+      `${apiUrl}/businesses?category=${category}&city=${city}`
+    );
 
     dispatch(fetchBusinessesSuccess(response.data.businesses));
   };
