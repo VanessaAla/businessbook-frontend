@@ -6,7 +6,12 @@ const initialState = [];
 export default (state = initialState, action) => {
   switch (action.type) {
     case APPOINTMENT_SUCCESS:
-      return action.payload;
+      return state.map((appointment) => {
+        if (appointment.id !== action.payload.id) {
+          return appointment;
+        }
+        return action.payload;
+      });
     case APPOINTMENTS_FETCHED:
       return [...action.payload];
     default:
