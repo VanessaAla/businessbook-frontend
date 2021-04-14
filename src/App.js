@@ -33,7 +33,6 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Switch>
         <Route exact path="/" component={SearchBusiness} />
-
         <Route path="/businesses/register" component={RegisterBusiness} />
         <Route path="/manage-users" component={ManageUsers} />
         <Route path="/manage-business" component={ManageBusiness} />

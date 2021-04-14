@@ -30,7 +30,7 @@ export default function Navigation() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
-          {userLoggedIn() ? (
+          {userLoggedIn() && !userAdminLoggedIn() ? (
             <NavBarItem
               path="/businesses/register"
               linkText="RegisterBusiness"
@@ -39,7 +39,7 @@ export default function Navigation() {
           {userLoggedIn() ? (
             <NavBarItem path="/update-details" linkText="UpdateDetails" />
           ) : null}
-          {userLoggedIn() ? (
+          {userLoggedIn() && !userAdminLoggedIn() ? (
             <NavBarItem path="/view-appointments" linkText="ViewAppointments" />
           ) : null}
           {userAdminLoggedIn() ? (
