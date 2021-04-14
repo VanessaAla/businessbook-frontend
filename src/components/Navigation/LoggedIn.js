@@ -1,7 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
+import { useHistory } from "react-router-dom";
+
 import { logOut } from "../../store/user/actions";
 import { clearBusinesses } from "../../store/businesses/actions";
 import { selectUser } from "../../store/user/selectors";

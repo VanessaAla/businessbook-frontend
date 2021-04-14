@@ -53,7 +53,7 @@ export default function RegisterBusiness() {
             onChange={(event) => set_businessName(event.target.value)}
             type="businessName"
             placeholder="Enter Business Name"
-            required
+            required={true}
           />
         </Form.Group>
         <Form.Group controlId="formBasicBusinessCategory">
@@ -62,7 +62,8 @@ export default function RegisterBusiness() {
             as="select"
             size="sm"
             custom
-            onChange={(e) => set_businessCategory(e.target.value)}
+            onChange={(event) => set_businessCategory(event.target.value)}
+            required={true}
           >
             <option>Please Select a Category</option>
             <option>spa</option>
@@ -79,6 +80,7 @@ export default function RegisterBusiness() {
             onChange={(event) => set_businessAddress(event.target.value)}
             type="businessAddress"
             placeholder="Enter Business Address"
+            required={true}
           />
         </Form.Group>
         <Form.Group controlId="formBasicBusinessCity">
@@ -87,7 +89,8 @@ export default function RegisterBusiness() {
             as="select"
             size="sm"
             custom
-            onChange={(e) => set_businessCity(e.target.value)}
+            onChange={(event) => set_businessCity(event.target.value)}
+            required={true}
           >
             <option>Please Select a City</option>
             <option>Utrecht</option>
@@ -104,7 +107,7 @@ export default function RegisterBusiness() {
             onChange={(event) => set_businessPostalCode(event.target.value)}
             type="businessPostalCode"
             placeholder="Enter Business Postal Code"
-            required
+            required={true}
           />
         </Form.Group>
         <Form.Group controlId="formBasicImgURL">

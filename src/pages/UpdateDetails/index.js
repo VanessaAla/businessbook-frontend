@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../store/user/selectors";
-import { updateUser } from "../../store/user/actions";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../store/user/selectors";
+import { updateUser } from "../../store/user/actions";
 import { Col } from "react-bootstrap";
 
 export default function UpdateDetails() {

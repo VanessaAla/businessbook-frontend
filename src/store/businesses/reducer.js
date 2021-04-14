@@ -1,8 +1,10 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { FETCH_BUSINESSES_SUCCESS } from "./actions";
-import { REGISTER_BUSINESS_SUCCESS } from "./actions";
-import { BUSINESS_DELETE } from "./actions";
-import { CLEAR_BUSINESSES } from "./actions";
+import {
+  FETCH_BUSINESSES_SUCCESS,
+  REGISTER_BUSINESS_SUCCESS,
+  BUSINESS_DELETE,
+  CLEAR_BUSINESSES,
+} from "./actions";
 
 const initialState = [];
 
