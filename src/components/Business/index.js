@@ -12,12 +12,13 @@ export default function Business(props) {
   const user = useSelector(selectUser);
 
   const userLoggedIn = () => {
-    return user.name !== null;
+    return user.firstName !== null;
   };
 
   const doMakeAppointment = (event) => {
     event.preventDefault();
-    dispatch(makeAppointment(props.date, props.id));
+    console.log("props ", props);
+    dispatch(makeAppointment(new Date(), props.id));
   };
 
   return (

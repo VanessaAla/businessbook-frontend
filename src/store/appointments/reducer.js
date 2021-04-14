@@ -6,7 +6,8 @@ const initialState = [];
 export default (state = initialState, action) => {
   switch (action.type) {
     case APPOINTMENT_SUCCESS: {
-      return [...action.payload]; //here use map to get appointments?
+      console.log("payload", action.payload);
+      return action.payload; //here use map to get appointments?
     }
     default:
       return state;

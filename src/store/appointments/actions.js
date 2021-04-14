@@ -1,5 +1,5 @@
 import { apiUrl } from "../../config/constants";
-import { selectToken, selectUser } from "../user/selectors";
+import { selectUser } from "../user/selectors";
 import axios from "axios";
 import {
   appLoading,
@@ -18,22 +18,34 @@ export const appointmentSuccess = (appointment) => ({
 export const makeAppointment = (date, businessId) => {
   return async (dispatch, getState) => {
     const { token } = selectUser(getState());
-    const response = await axios.post(
-      `${apiUrl}/appointments/${businessId}/appointment`, //check here your path with the backend
-      {
-        date, //check here for today's date
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    dispatch(appLoading());
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    try {
+      const response = await axios.post(
+        `${apiUrl}/appointments/${businessId}/appointment`,
+        {
+          date,
         },
+        {
+          headers: headers,
+        }
+      );
+      dispatch(appointmentSuccess(response.data.appointment));
+      dispatch(showMessageWithTimeout("success", true, "appointment made"));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
       }
-    );
-    dispatch(
-      showMessageWithTimeout("success", false, response.data.message, 3000)
-    );
-    dispatch(appointmentSuccess(response.data));
-    dispatch(showMessageWithTimeout("success", true, "appointment made"));
-    dispatch(appDoneLoading()); //try catch error logic here later
+      dispatch(appDoneLoading());
+    }
   };
 };
