@@ -29,6 +29,7 @@ export default function Navigation() {
           <NavBarItem path="/search-business" linkText="SearchBusiness" />
           <NavBarItem path="/businesses/register" linkText="RegisterBusiness" />
           <NavBarItem path="/update-details" linkText="UpdateDetails" />
+          <NavBarItem path="/view-appointments" linkText="ViewAppointments" />
           {userAdminLoggedIn() ? (
             <NavBarItem path="/manage-users" linkText="Manage Users" />
           ) : null}
