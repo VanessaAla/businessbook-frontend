@@ -106,6 +106,7 @@ export default function SignUp() {
             custom
             onChange={(e) => set_City(e.target.value)}
           >
+            <option>Please Select a City</option>
             <option>Utrecht</option>
             <option>Amsterdam</option>
             <option>Rotterdam</option>
