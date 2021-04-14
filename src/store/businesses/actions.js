@@ -11,6 +11,7 @@ import {
 export const FETCH_BUSINESSES_SUCCESS = "FETCH_BUSINESSES_SUCCESS";
 export const REGISTER_BUSINESS_SUCCESS = "REGISTER_BUSINESS_SUCCESS";
 export const BUSINESS_DELETE = "BUSINESS_DELETE";
+export const CLEAR_BUSINESSES = "CLEAR_BUSINESSES";
 
 export const businessDelete = (businessId) => ({
   type: BUSINESS_DELETE,
@@ -25,6 +26,11 @@ export const fetchBusinessesSuccess = (businesses) => ({
 export const registerBusinessSuccess = (business) => ({
   type: REGISTER_BUSINESS_SUCCESS,
   payload: business,
+});
+
+export const clearBusinesses = () => ({
+  type: CLEAR_BUSINESSES,
+  payload: [],
 });
 
 export const fetchBusinesses = (category, city) => {
@@ -95,8 +101,6 @@ export const deleteBusiness = (businessId) => {
   return async (dispatch, getState) => {
     const { token } = selectUser(getState());
 
-    console.log("id : ", businessId);
-
     try {
       const response = await axios.delete(
         `${apiUrl}/businesses/remove/${businessId}`,
@@ -107,7 +111,6 @@ export const deleteBusiness = (businessId) => {
           },
         }
       );
-      console.log("business deleted?", response);
       dispatch(businessDelete(response.data.businessId));
       dispatch(showMessageWithTimeout("success", true, "business deleted"));
       dispatch(appDoneLoading());

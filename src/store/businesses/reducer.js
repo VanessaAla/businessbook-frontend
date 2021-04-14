@@ -2,6 +2,7 @@
 import { FETCH_BUSINESSES_SUCCESS } from "./actions";
 import { REGISTER_BUSINESS_SUCCESS } from "./actions";
 import { BUSINESS_DELETE } from "./actions";
+import { CLEAR_BUSINESSES } from "./actions";
 
 const initialState = [];
 
@@ -13,10 +14,11 @@ export default (state = initialState, action) => {
       return [action.payload];
 
     case BUSINESS_DELETE:
-      console.log("action.payload ", action.payload);
       return state.filter(
         (business) => business.id !== parseInt(action.payload)
       );
+    case CLEAR_BUSINESSES:
+      return action.payload;
     default:
       return state;
   }

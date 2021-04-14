@@ -18,7 +18,6 @@ export default function ManageBusiness() {
   }, [dispatch]);
 
   const doDeleteBusiness = (id) => {
-    console.log("clicked id : ", id);
     dispatch(deleteBusiness(id));
   };
 
@@ -40,7 +39,6 @@ export default function ManageBusiness() {
             <tr key={index}>
               <td>{business.businessName}</td>
               <td>{business.businessCategory}</td>
-
               <td>
                 <Button onClick={() => doDeleteBusiness(business.id)}>
                   Delete
