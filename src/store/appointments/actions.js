@@ -30,8 +30,9 @@ export const fetchAppointments = (date) => {
         Authorization: `Bearer ${token}`,
       },
     });
+
     console.log(response);
-    dispatch(appointmentsFetched(response.data.reservations.rows));
+    dispatch(appointmentsFetched(response.data.appointmentList.rows));
   };
 };
 
