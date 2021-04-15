@@ -23,7 +23,9 @@ export default function LoggedIn() {
   return (
     <>
       <Nav.Item style={{ padding: ".5rem 1rem" }}>{user.email}</Nav.Item>
-      <Button onClick={handleClick}>Logout</Button>
+      <Button style={{ backgroundColor: "#6930c3" }} onClick={handleClick}>
+        Logout
+      </Button>
     </>
   );
 }

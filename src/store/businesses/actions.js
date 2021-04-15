@@ -80,8 +80,7 @@ export const doRegisterBusiness = (
       const response = await axios.post(`${apiUrl}/businesses/register`, data, {
         headers: headers,
       });
-
-      dispatch(registerBusinessSuccess(response.data));
+      dispatch(registerBusinessSuccess(response.data.registerBusiness));
       dispatch(showMessageWithTimeout("success", true, "business registered"));
       dispatch(appDoneLoading());
     } catch (error) {

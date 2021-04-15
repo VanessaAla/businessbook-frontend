@@ -13,8 +13,7 @@ export default (state = initialState, action) => {
     case FETCH_BUSINESSES_SUCCESS:
       return [...action.payload];
     case REGISTER_BUSINESS_SUCCESS:
-      return [action.payload];
-
+      return state;
     case BUSINESS_DELETE:
       return state.filter(
         (business) => business.id !== parseInt(action.payload)

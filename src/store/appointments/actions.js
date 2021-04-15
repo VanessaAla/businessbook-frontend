@@ -54,7 +54,7 @@ export const makeAppointment = (date, businessId) => {
           headers: headers,
         }
       );
-      dispatch(appointmentSuccess(response.data.appointment));
+      dispatch(appointmentSuccess(response.data.fetchedAppointment));
       dispatch(showMessageWithTimeout("success", true, "appointment made"));
       dispatch(appDoneLoading());
     } catch (error) {
