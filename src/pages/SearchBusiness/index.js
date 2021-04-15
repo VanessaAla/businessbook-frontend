@@ -55,6 +55,7 @@ export default function SearchBusiness() {
           </Form.Group>
 
           <Button
+            style={{ backgroundColor: "#6930c3" }}
             onClick={() => fetchBusinessForSelectedCriteria(category, city)}
           >
             Search
@@ -63,13 +64,15 @@ export default function SearchBusiness() {
       </div>
       <div className="business-container">
         {businesses.map((business, index) => (
-          <Business
-            key={index}
-            id={business.id}
-            name={business.businessName}
-            image={business.imgURL}
-            address={business.businessAddress}
-          />
+          <div key={index} className="business-card-container">
+            <Business
+              key={index}
+              id={business.id}
+              name={business.businessName}
+              image={business.imgURL}
+              address={business.businessAddress}
+            />
+          </div>
         ))}
       </div>
     </div>

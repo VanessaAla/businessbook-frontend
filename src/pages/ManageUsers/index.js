@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import "./ManageUsers.scss";
@@ -29,40 +28,56 @@ export default function ManageUsers() {
 
   return (
     <div>
-      <Jumbotron>
-        <h1>User management</h1>
-      </Jumbotron>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>isBlocked</th>
-            <th>Block?</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr key={index}>
-              <td>
-                {user.firstName} {user.lastName}
-              </td>
-              <td>{user.email}</td>
+      <div className="heading-container">
+        <h1 className="mt-5">User management</h1>
+      </div>
+      <div className="users-container">
+        <div className="users-table">
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>isBlocked</th>
+                <th>Block?</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, index) => (
+                <tr key={index}>
+                  <td>
+                    {user.firstName} {user.lastName}
+                  </td>
+                  <td>{user.email}</td>
 
-              <td>
-                {user.isBlocked === null ? "false" : user.isBlocked.toString()}
-              </td>
-              <td>
-                {user.isBlocked ? (
-                  <Button onClick={() => doUnBlock(user.id)}>Unblock</Button>
-                ) : (
-                  <Button onClick={() => doBlock(user.id)}>block</Button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+                  <td>
+                    {user.isBlocked === null
+                      ? "false"
+                      : user.isBlocked.toString()}
+                  </td>
+                  <td>
+                    {user.isBlocked ? (
+                      <Button
+                        style={{ backgroundColor: "#6930c3" }}
+                        onClick={() => doUnBlock(user.id)}
+                      >
+                        Unblock
+                      </Button>
+                    ) : (
+                      <Button
+                        style={{ backgroundColor: "#6930c3" }}
+                        onClick={() => doBlock(user.id)}
+                      >
+                        block
+                      </Button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      </div>
     </div>
   );
 }

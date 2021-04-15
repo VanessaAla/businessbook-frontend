@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import "./ManageBusiness.scss";
@@ -24,31 +23,38 @@ export default function ManageBusiness() {
 
   return (
     <div>
-      <Jumbotron>
-        <h1>Business management</h1>
-      </Jumbotron>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Delete?</th>
-          </tr>
-        </thead>
-        <tbody>
-          {businesses.map((business, index) => (
-            <tr key={index}>
-              <td>{business.businessName}</td>
-              <td>{business.businessCategory}</td>
-              <td>
-                <Button onClick={() => doDeleteBusiness(business.id)}>
-                  Delete
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <div className="heading-container">
+        <h1 className="mt-5">Business management</h1>
+      </div>
+      <div className="business-container">
+        <div className="business-table">
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Delete?</th>
+              </tr>
+            </thead>
+            <tbody>
+              {businesses.map((business, index) => (
+                <tr key={index}>
+                  <td>{business.businessName}</td>
+                  <td>{business.businessCategory}</td>
+                  <td>
+                    <Button
+                      style={{ backgroundColor: "#6930c3" }}
+                      onClick={() => doDeleteBusiness(business.id)}
+                    >
+                      Delete
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      </div>
     </div>
   );
 }

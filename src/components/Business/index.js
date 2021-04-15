@@ -30,19 +30,31 @@ export default function Business(props) {
         <p className="card-text">{props.address}</p>
         <div className="search-buttons">
           {userLoggedIn() ? (
-            <Button onClick={doMakeAppointment}>Make an appointment</Button>
+            <Button
+              style={{ backgroundColor: "#6930c3" }}
+              onClick={doMakeAppointment}
+            >
+              Make an appointment
+            </Button>
           ) : (
             <Link to="/login" style={{ textAlign: "center" }}>
-              <Button>login to make an appointment</Button>
+              <Button style={{ backgroundColor: "#6930c3" }}>
+                login to make an appointment
+              </Button>
             </Link>
           )}
         </div>
         <div className="search-buttons">
           {userLoggedIn() ? (
-            <Button> Contact Business </Button>
+            <Button style={{ backgroundColor: "#6930c3" }}>
+              {" "}
+              Contact Business{" "}
+            </Button>
           ) : (
             <Link to="/login" style={{ textAlign: "center" }}>
-              <Button>login to contact business</Button>
+              <Button style={{ backgroundColor: "#6930c3" }}>
+                login to contact business
+              </Button>
             </Link>
           )}
         </div>

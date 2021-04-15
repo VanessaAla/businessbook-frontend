@@ -56,7 +56,12 @@ export default function Login() {
           />
         </Form.Group>
         <Form.Group className="mt-5">
-          <Button variant="primary" type="submit" onClick={submitForm}>
+          <Button
+            variant="primary"
+            type="submit"
+            style={{ backgroundColor: "#6930c3" }}
+            onClick={submitForm}
+          >
             Log in
           </Button>
         </Form.Group>

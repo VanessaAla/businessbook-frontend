@@ -97,7 +97,12 @@ export default function UpdateDetails() {
           />
         </Form.Group>
         <Form.Group className="mt-5">
-          <Button variant="primary" type="submit" onClick={submitForm}>
+          <Button
+            style={{ backgroundColor: "#6930c3" }}
+            variant="primary"
+            type="submit"
+            onClick={submitForm}
+          >
             Submit your changes
           </Button>
         </Form.Group>
