@@ -1,6 +1,8 @@
 import React from "react";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
+
+import "./Business.scss";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { selectUser } from "../../store/user/selectors";
@@ -24,6 +26,7 @@ export default function Business(props) {
   return (
     <Jumbotron>
       {props.name}
+      <img src={props.image} alt="..." className="img-thumbnail" />
       <div>
         {userLoggedIn() ? (
           <Button onClick={doMakeAppointment}>Make an appointment</Button>
