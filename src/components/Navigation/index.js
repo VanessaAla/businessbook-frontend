@@ -23,7 +23,7 @@ export default function Navigation() {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg">
       {!userAdminLoggedIn() ? (
         <Navbar.Brand as={NavLink} to="/">
           BusinessBook
