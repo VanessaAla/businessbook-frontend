@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import "./Navbar.scss";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectToken, selectUser } from "../../store/user/selectors";
@@ -23,7 +24,7 @@ export default function Navigation() {
   };
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar className="navbar" expand="lg">
       {!userAdminLoggedIn() ? (
         <Navbar.Brand as={NavLink} to="/">
           BusinessBook

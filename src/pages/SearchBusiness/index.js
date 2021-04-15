@@ -18,7 +18,7 @@ export default function SearchBusiness() {
   };
 
   return (
-    <div>
+    <div className="body">
       <Form>
         <Form.Group controlId="exampleForm.SelectCustomSizeSm">
           <Form.Label>Business Category</Form.Label>
