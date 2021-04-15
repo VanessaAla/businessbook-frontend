@@ -1,5 +1,4 @@
 import React from "react";
-import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
 
 import "./Business.scss";
@@ -15,7 +14,7 @@ export default function Business(props) {
   const user = useSelector(selectUser);
 
   const userLoggedIn = () => {
-    return user.firstName !== null;
+    return user.token !== null;
   };
 
   const doMakeAppointment = (event) => {
@@ -24,19 +23,30 @@ export default function Business(props) {
   };
 
   return (
-    <Jumbotron>
-      {props.name}
-      <img src={props.image} alt="..." className="img-thumbnail" />
-      <div>
-        {userLoggedIn() ? (
-          <Button onClick={doMakeAppointment}>Make an appointment</Button>
-        ) : (
-          <Link to="/login" style={{ textAlign: "center" }}>
-            <Button>login to make an appointment</Button>
-          </Link>
-        )}
-      </div>{" "}
-      <Button> Contact Business </Button>
-    </Jumbotron>
+    <div className="card" style={{ width: "18rem" }}>
+      <img id="image" src={props.image} alt="..." />
+      <div className="card-body">
+        <h5 className="card-title">{props.name}</h5>
+        <p className="card-text">{props.address}</p>
+        <div className="search-buttons">
+          {userLoggedIn() ? (
+            <Button onClick={doMakeAppointment}>Make an appointment</Button>
+          ) : (
+            <Link to="/login" style={{ textAlign: "center" }}>
+              <Button>login to make an appointment</Button>
+            </Link>
+          )}
+        </div>
+        <div className="search-buttons">
+          {userLoggedIn() ? (
+            <Button> Contact Business </Button>
+          ) : (
+            <Link to="/login" style={{ textAlign: "center" }}>
+              <Button>login to contact business</Button>
+            </Link>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

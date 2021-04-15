@@ -1,7 +1,12 @@
-.body {
-  background-color: #cccccc;
+.business-container {
+  display: flex;
+  justify-content: center;
 }
 
-body {
-  background-image: url("../../images/2e74b6ab2c812c49c543ef37295145a5.jpeg");
+.search-fields {
+  width: 400;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }

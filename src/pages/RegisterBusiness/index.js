@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import "./RegisterBusiness.scss";
 import { doRegisterBusiness } from "../../store/businesses/actions";
 import { useDispatch } from "react-redux";
 
@@ -48,6 +49,7 @@ export default function RegisterBusiness() {
         <h1 className="mt-5 mb-5">Register Business</h1>
         <Form.Group controlId="formBasicBusinessName">
           <Form.Label>Business Name</Form.Label>
+
           <Form.Control
             value={businessName}
             onChange={(event) => set_businessName(event.target.value)}

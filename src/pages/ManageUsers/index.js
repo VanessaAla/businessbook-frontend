@@ -1,4 +1,8 @@
 import React, { useEffect } from "react";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Button from "react-bootstrap/Button";
+import Table from "react-bootstrap/Table";
+import "./ManageUsers.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUsers,
@@ -6,9 +10,6 @@ import {
   unBlockUsers,
 } from "../../store/users/actions";
 import { selectUsers } from "../../store/users/selectors";
-import Jumbotron from "react-bootstrap/Jumbotron";
-import Button from "react-bootstrap/Button";
-import Table from "react-bootstrap/Table";
 
 export default function ManageUsers() {
   const dispatch = useDispatch();

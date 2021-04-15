@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Button from "react-bootstrap/Button";
+import Table from "react-bootstrap/Table";
+import "./ManageBusiness.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllBusinesses,
   deleteBusiness,
 } from "../../store/businesses/actions";
 import { selectBusinesses } from "../../store/businesses/selectors";
-import Jumbotron from "react-bootstrap/Jumbotron";
-import Button from "react-bootstrap/Button";
-import Table from "react-bootstrap/Table";
 
 export default function ManageBusiness() {
   const dispatch = useDispatch();
