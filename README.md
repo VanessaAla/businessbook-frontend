@@ -51,7 +51,7 @@ This project is a work in progress. Some features still need to be implemented a
 
 # ⚒ Project details
 
-## Project Board
+## Project Boards
 
 Front end:
 [Frontend Project Board](https://github.com/VanessaAla/businessbook-frontend/projects/1) 
