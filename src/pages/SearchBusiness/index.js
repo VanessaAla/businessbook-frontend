@@ -71,6 +71,7 @@ export default function SearchBusiness() {
               key={index}
               id={business.id}
               name={business.businessName}
+              email={business.businessEmail}
               image={business.imgURL}
               address={business.businessAddress}
             />
