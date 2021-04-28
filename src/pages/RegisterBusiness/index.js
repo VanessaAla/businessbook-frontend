@@ -11,6 +11,7 @@ import { setMessage } from "../../store/appState/actions";
 
 export default function RegisterBusiness() {
   const [businessName, set_businessName] = useState("");
+  const [businessEmail, set_businessEmail] = useState("");
   const [businessCategory, set_businessCategory] = useState("");
   const [businessAddress, set_businessAddress] = useState("");
   const [businessCity, set_businessCity] = useState("");
@@ -33,6 +34,7 @@ export default function RegisterBusiness() {
     dispatch(
       doRegisterBusiness(
         businessName,
+        businessEmail,
         businessCategory,
         businessAddress,
         businessCity,
@@ -55,6 +57,16 @@ export default function RegisterBusiness() {
             onChange={(event) => set_businessName(event.target.value)}
             type="businessName"
             placeholder="Enter Business Name"
+            required={true}
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label> Business Email</Form.Label>
+          <Form.Control
+            value={businessEmail}
+            onChange={(event) => set_businessEmail(event.target.value)}
+            type="businessEmail"
+            placeholder="name@example.com"
             required={true}
           />
         </Form.Group>

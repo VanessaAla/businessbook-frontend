@@ -53,6 +53,7 @@ export const fetchAllBusinesses = () => {
 
 export const doRegisterBusiness = (
   businessName,
+  businessEmail,
   businessCategory,
   businessAddress,
   businessCity,
@@ -69,6 +70,7 @@ export const doRegisterBusiness = (
 
     const data = {
       businessName,
+      businessEmail,
       businessCategory,
       businessAddress,
       businessCity,

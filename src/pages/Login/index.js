@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import "./Login.scss";
 import { login } from "../../store/user/actions";
-import { selectToken } from "../../store/user/selectors";
+import { selectToken, selectUser } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
@@ -15,12 +15,17 @@ export default function Login() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
+  const loggedInUser = useSelector(selectUser);
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/");
+      if (loggedInUser.isAdmin) {
+        history.push("/update-details");
+      } else {
+        history.push("/");
+      }
     }
-  }, [token, history]);
+  }, [token, history, loggedInUser]);
 
   function submitForm(event) {
     event.preventDefault();
