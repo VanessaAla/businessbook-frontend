@@ -31,6 +31,14 @@ export default function Business(props) {
     set_show(false);
   };
 
+  const Mailto = ({ email, subject = "", body = "", children }) => {
+    let params = subject || body ? "?" : "";
+    if (subject) params += `subject=${encodeURIComponent(subject)}`;
+    if (body) params += `${subject ? "&" : ""}body=${encodeURIComponent(body)}`;
+
+    return <a href={`mailto:${email}${params}`}>{children}</a>;
+  };
+
   return (
     <div className="card" style={{ width: "18rem" }}>
       <img id="image" src={props.image} alt="..." />
@@ -52,10 +60,13 @@ export default function Business(props) {
         </div>
         <div className="search-buttons">
           {userLoggedIn() ? (
-            <Button style={{ backgroundColor: "#6930c3" }}>
-              {" "}
-              Contact Business{" "}
-            </Button>
+            <Mailto
+              email="info@business.nl"
+              subject="Hi "
+              body="I would like to make an appointment."
+            >
+              Contact Business
+            </Mailto>
           ) : (
             <Link to="/login" style={{ textAlign: "center" }}>
               <Button style={{ backgroundColor: "#6930c3" }}>
