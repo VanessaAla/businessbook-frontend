@@ -21,6 +21,8 @@ export default function SearchBusiness() {
     <div>
       <div className="search-fields">
         <Form>
+          <h1 className="search-title">BusinessBook</h1>
+          <h2>Seek and you will find</h2>
           <Form.Group controlId="exampleForm.SelectCustomSizeSm">
             <Form.Label>Business Category</Form.Label>
             <Form.Control
