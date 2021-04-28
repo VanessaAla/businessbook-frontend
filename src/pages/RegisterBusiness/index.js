@@ -61,11 +61,11 @@ export default function RegisterBusiness() {
           />
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
+          <Form.Label> Business Email</Form.Label>
           <Form.Control
             value={businessEmail}
             onChange={(event) => set_businessEmail(event.target.value)}
-            type="Email"
+            type="businessEmail"
             placeholder="name@example.com"
             required={true}
           />
