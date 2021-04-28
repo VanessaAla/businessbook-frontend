@@ -61,7 +61,7 @@ export default function Business(props) {
         <div className="search-buttons">
           {userLoggedIn() ? (
             <Mailto
-              email="info@business.nl"
+              email={props.email}
               subject="Hi "
               body="I would like to make an appointment."
             >
