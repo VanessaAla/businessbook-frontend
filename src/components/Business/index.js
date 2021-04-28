@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import DatePicker from "react-datepicker";
 
+import "react-datepicker/dist/react-datepicker.css";
 import "./Business.scss";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -12,6 +15,11 @@ import { Link } from "react-router-dom";
 export default function Business(props) {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const [show, set_show] = useState(false);
+  const [startDate, set_StartDate] = useState(new Date());
+
+  const handleClose = () => set_show(false);
+  const handleShow = () => set_show(true);
 
   const userLoggedIn = () => {
     return user.token !== null;
@@ -19,7 +27,8 @@ export default function Business(props) {
 
   const doMakeAppointment = (event) => {
     event.preventDefault();
-    dispatch(makeAppointment(new Date(), props.id));
+    dispatch(makeAppointment(startDate, props.id));
+    set_show(false);
   };
 
   return (
@@ -30,10 +39,7 @@ export default function Business(props) {
         <p className="card-text">{props.address}</p>
         <div className="search-buttons">
           {userLoggedIn() ? (
-            <Button
-              style={{ backgroundColor: "#6930c3" }}
-              onClick={doMakeAppointment}
-            >
+            <Button style={{ backgroundColor: "#6930c3" }} onClick={handleShow}>
               Make an appointment
             </Button>
           ) : (
@@ -59,6 +65,29 @@ export default function Business(props) {
           )}
         </div>
       </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Make Appointment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Please select a date for your appointment:</Modal.Body>
+        <DatePicker
+          selected={startDate}
+          onChange={(date) => set_StartDate(date)}
+        />
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <div className="save-changes">
+            <Button
+              style={{ backgroundColor: "#6930c3" }}
+              onClick={doMakeAppointment}
+            >
+              Save Changes
+            </Button>
+          </div>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
