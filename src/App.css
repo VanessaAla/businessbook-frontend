@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  background-color: #80ffdb;
   opacity: 0.8;
   position: relative;
   width: 100%;
@@ -58,4 +57,8 @@ body,
 html {
   height: 100%;
   background-color: #80ffdb !important;
+  background-image: url("images/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
 }
