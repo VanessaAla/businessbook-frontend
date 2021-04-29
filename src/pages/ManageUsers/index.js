@@ -58,7 +58,7 @@ export default function ManageUsers() {
                   <td>
                     {user.isBlocked ? (
                       <Button
-                        style={{ backgroundColor: "#6930c3" }}
+                        style={{ backgroundColor: "#ffc43d" }}
                         onClick={() => doUnBlock(user.id)}
                       >
                         Unblock
