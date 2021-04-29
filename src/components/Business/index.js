@@ -41,7 +41,7 @@ export default function Business(props) {
 
   return (
     <div className="card" style={{ width: "18rem" }}>
-      <img id="image" src={props.image} alt="..." />
+      <img className="business-image" id="image" src={props.image} alt="..." />
       <div className="card-body">
         <h5 className="card-title">{props.name}</h5>
         <p className="card-text">{props.address}</p>
@@ -81,10 +81,12 @@ export default function Business(props) {
           <Modal.Title>Make Appointment</Modal.Title>
         </Modal.Header>
         <Modal.Body>Please select a date for your appointment:</Modal.Body>
-        <DatePicker
-          selected={startDate}
-          onChange={(date) => set_StartDate(date)}
-        />
+        <div className="date-picker">
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => set_StartDate(date)}
+          />
+        </div>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
