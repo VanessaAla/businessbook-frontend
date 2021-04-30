@@ -37,6 +37,7 @@ export default function Business(props) {
     if (body) params += `${subject ? "&" : ""}body=${encodeURIComponent(body)}`;
 
     return (
+      // eslint-disable-next-line react/jsx-no-target-blank
       <a target="_blank" href={`mailto:${email}${params}`}>
         {children}
       </a>
