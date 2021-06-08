@@ -35,7 +35,7 @@ export default function SearchBusiness() {
         ))}
       </div>
     ) : (
-      <div>No results available</div>
+      <div className="no-match">Ooops...no match found!</div>
     );
   };
 
