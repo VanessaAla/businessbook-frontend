@@ -6,7 +6,7 @@ import {
   CLEAR_BUSINESSES,
 } from "./actions";
 
-const initialState = [];
+const initialState = null;
 
 export default (state = initialState, action) => {
   switch (action.type) {

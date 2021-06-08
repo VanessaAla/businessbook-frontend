@@ -10,11 +10,33 @@ import { selectBusinesses } from "../../store/businesses/selectors";
 export default function SearchBusiness() {
   const dispatch = useDispatch();
   const businesses = useSelector(selectBusinesses);
+
   const [category, set_Category] = useState("");
   const [city, set_City] = useState("");
 
   const fetchBusinessForSelectedCriteria = (category, city) => {
     dispatch(fetchBusinesses(category, city));
+  };
+
+  const getResults = () => {
+    return businesses.length > 0 ? (
+      <div className="business-container">
+        {businesses.map((business, index) => (
+          <div key={index} className="business-card-container">
+            <Business
+              key={index}
+              id={business.id}
+              name={business.businessName}
+              email={business.businessEmail}
+              image={business.imgURL}
+              address={business.businessAddress}
+            />
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div>No results available</div>
+    );
   };
 
   return (
@@ -63,20 +85,8 @@ export default function SearchBusiness() {
           </Button>
         </Form>
       </div>
-      <div className="business-container">
-        {businesses.map((business, index) => (
-          <div key={index} className="business-card-container">
-            <Business
-              key={index}
-              id={business.id}
-              name={business.businessName}
-              email={business.businessEmail}
-              image={business.imgURL}
-              address={business.businessAddress}
-            />
-          </div>
-        ))}
-      </div>
+
+      {businesses ? getResults() : null}
     </div>
   );
 }
